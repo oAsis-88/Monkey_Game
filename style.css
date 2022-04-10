@@ -1,0 +1,100 @@
+/* PyQt5 uses QSS, not css */
+
+.QLabel {
+    color: QLinearGradient( x1: 0, y1: 0,
+                             x2: 1, y2: 1,
+                          stop: 0 #FBF19E,
+                          stop: 0.5 #FAEA6E,
+                          stop: 1 #F7D627 );
+    qproperty-alignment: AlignCenter;
+    qproperty-wordWrap: true;
+}
+
+.QPushButton{
+    font: bold 16px;
+    color: QLinearGradient( x1: 0, y1: 0,
+                             x2: 1, y2: 1,
+                          stop: 0 #FBF19E,
+                          stop: 0.5 #FAEA6E,
+                          stop: 1 #F7D627 );
+
+    padding: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: gray;
+    background: QLinearGradient( x1: 0, y1: 0,
+                             x2: 0, y2: 1,
+                          stop: 0 #FEFAF9,
+                          stop: 0.3 #B6B6F1,
+                          stop: 0.3 #4E56D6,
+                          stop: 0.7 #6075EC,
+                          stop: 1 #9AB8D6 );
+}
+
+.QPushButton:hover{
+    background-color: rgb(191, 191, 191);
+}
+
+#ButtonOptions {
+    width: 150px;
+    height: 50px;
+}
+
+#Background_Board {
+    background-color: #C49844;
+    /*border-image: url(image/bg_board.png);*/
+    /*background-position: center;*/
+}
+#Text {
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: blue;
+    border-style: outset;
+
+    font: bold 16px;
+}
+
+#Title {
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: blue;
+    border-style: outset;
+
+    font: bold 26px;
+}
+
+
+#MenuButton {
+    width: 150px;
+}
+
+#InfoTable{
+    background-color: rgb(123, 122, 112);
+
+    padding: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: gray;
+}
+
+#InfoTable .QLabel {
+    background-color: rgb(223, 222, 212);
+    font: bold 14px;
+    padding: 6px;
+    color: brown;
+}
+
+QProgressBar {
+    border: 2px solid grey;
+    border-radius: 5px;
+}
+
+QProgressBar::chunk {
+border : 1px solid black;
+background: QLinearGradient( x1: 0, y1: 0,
+                             x2: 0, y2: 1,
+                          stop: 0 green,
+                          stop: 1 red );
+}

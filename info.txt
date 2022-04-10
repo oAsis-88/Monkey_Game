@@ -1,0 +1,6 @@
+Click and drag rows or columns of monkeys.
+Make lines of 3 or more of the same colour to pop them!
+Blue spaces turn golden when monkeys pop - turn them all golden to complete the round!
+Brown spaces contain items just like blue spaces, but won't, turn golden when popped.
+coconuts get in the way but you can smash them by popping something next to them!
+Match bananas with monkeys of the same colour to pop all the monkeys of that colour!
