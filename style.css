@@ -86,12 +86,12 @@
     color: brown;
 }
 
-QProgressBar {
+#Timer {
     border: 2px solid grey;
     border-radius: 5px;
 }
 
-QProgressBar::chunk {
+#Timer::chunk {
 border : 1px solid black;
 background: QLinearGradient( x1: 0, y1: 0,
                              x2: 0, y2: 1,

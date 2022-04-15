@@ -51,6 +51,7 @@ class Time(QWidget):
         self.vbox.setAlignment(Qt.AlignBottom | Qt.AlignHCenter)
 
         self.bar = QProgressBar()
+        self.bar.setObjectName("Timer")
         self.bar.setFixedHeight(int(self.height() * 9 / 10))
         self.bar.setValue(int(self.ai_settings.time_game * 5 / 3))
         self.bar.setFormat("")

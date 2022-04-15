@@ -13,11 +13,31 @@ def shuffling_table(table: TableGame):
     """ Перестановка всех ячеек """
     for row in range(table.rowCount()):
         for col in range(table.columnCount()):
+
+            # Исключение цвета 3 в ряд
+            link_color = []
+            if col > 1:
+                if table.data[row][col - 1] == table.data[row][col - 2]:
+                    link_color.append(table.data[row][col - 1])
+                    table.link_color_monkey.remove(table.data[row][col - 1])
+            if row > 1:
+                if table.data[row - 1][col] == table.data[row - 2][col] and table.data[row - 1][
+                    col] in table.link_color_monkey:
+                    link_color.append(table.data[row - 1][col])
+                    table.link_color_monkey.remove(table.data[row - 1][col])
+
+            # выбираем рандомный цвет из возможно оставшихся
             color = random.choice(table.link_color_monkey)
+            table.data[row][col] = color
+
+            for el in link_color:
+                table.link_color_monkey.append(el)
+
             if table.mapping[row][col]:
                 link = f'image/{color}_monkey_pass'
             else:
                 link = f'image/{color}_monkey'
+
             icon = QIcon(link)
             item_icon = QTableWidgetItem(icon, '')
             table.setItem(row, col, QTableWidgetItem(item_icon))
@@ -41,7 +61,7 @@ def update_table_by_data(table: TableGame):
                 link = f'image/{table.data[row][col]}_monkey'
             icon = QIcon(link)
             item_icon = QTableWidgetItem(icon, '')
-            table.setItem(row, col, QTableWidgetItem(item_icon))
+            table.setItem(row, col, item_icon)
 
 
 def shifting_cells_down(table: TableGame):
@@ -94,7 +114,7 @@ def del_cell_with_settings(ai_settings: Settings, table: TableGame, row, col):
 def find_sequence(table: TableGame):
     """ Находит нет ли 3 в ряд или более одинаковых ячеек
     Возвращает:
-    флаг - есть или нет
+    флаг - есть или нет (3 в ряд)
     rows - массив с индексами для удаления ячеек в строке каждой строки
     columns - массив с индексами для удаления ячеек в колонке каждой колонки """
     # Находим ряды с 3 или более повторяющимися цветами
@@ -116,6 +136,7 @@ def find_sequence(table: TableGame):
                 index = i
         rows.append(line)
 
+    # Находит колонки где есть
     for col in range(table.columnCount()):
         cols = []
         index = 0
@@ -146,10 +167,12 @@ def moving_cells(table: TableGame):
     """ Перемещает (в двумерном массиве (поле data - массив хранит color), не в самой таблице) строку или столбец со смещением промежуточных ячеек """
     # Переносим столбцы
     if table.first_row == table.last_row and table.first_col != table.last_col:
+        # Вправо
         if table.first_col < table.last_col:
             tmp = table.data[table.first_row][-abs(table.first_col - table.last_col):]
             table.data[table.first_row][abs(table.first_col - table.last_col):] = table.data[table.first_row][0: -abs(table.first_col - table.last_col)]
             table.data[table.first_row][: abs(table.first_col - table.last_col)] = tmp
+        # Влево
         else:
             tmp = table.data[table.first_row][:abs(table.first_col - table.last_col)]
             table.data[table.first_row][0: -abs(table.first_col - table.last_col)] = table.data[table.first_row][
@@ -158,7 +181,7 @@ def moving_cells(table: TableGame):
 
     # Переносим строки
     elif table.first_row != table.last_row and table.first_col == table.last_col:
-        # difference =
+        # Вниз
         if table.first_row < table.last_row:
             tmp = []
             for row in range(table.rowCount() - abs(table.first_row - table.last_row), table.rowCount()):
@@ -168,6 +191,7 @@ def moving_cells(table: TableGame):
                     table.first_col]
             for row in range(abs(table.first_row - table.last_row)):
                 table.data[row][table.first_col] = tmp[row]
+        # Вверх
         else:
             tmp = []
             for row in range(abs(table.first_row - table.last_row)):

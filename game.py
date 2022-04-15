@@ -22,24 +22,26 @@ class Game(QMainWindow):
         # self.setFixedSize(732, 652)
         self.setWindowTitle("Game")
 
+        self.widget = QWidget()
+        self.box = QGridLayout()
         self.display()
+        self.widget.setLayout(self.box)
+
         screen_game_height = self.ai_settings.count_rows * self.ai_settings.size_cell + 20
         screen_game_wight = self.ai_settings.count_columns * self.ai_settings.size_cell + self.info_table.width() + self.time.width() * 2
+        self.setFixedWidth(screen_game_wight)
+        self.setFixedHeight(screen_game_height)
 
         with open("style.css", 'r') as f:
             style = f.read()
             self.setStyleSheet(style)
 
         self.setCentralWidget(self.widget)
-        self.setFixedWidth(screen_game_wight)
-        self.setFixedHeight(screen_game_height)
         self.show()
 
 
     def display(self):
         """ Display game """
-        self.widget = QWidget()
-        self.box = QGridLayout()
         # self.box.setAlignment(Qt.AlignHCenter)
 
         self.info_table = InfoTable(self.ai_settings)
@@ -53,7 +55,6 @@ class Game(QMainWindow):
         self.box.addWidget(self.info_table, 0, 0)
         self.box.addWidget(self.tableGame, 0, 1)
         self.box.addWidget(self.time, 0, 2)
-        self.widget.setLayout(self.box)
 
     def keyPressEvent(self, e):
         """ keyboard events """
@@ -63,8 +64,8 @@ class Game(QMainWindow):
             self.close()
 
         # The game will start when you press the enter button
-        elif e.key() == Qt.Key_Return:
-            self.event_sign_in()
+        # elif e.key() == Qt.Key_Return:
+        #     self.event_sign_in()
 
 
 

@@ -17,6 +17,7 @@ class Instructions(QWidget):
         """ Initialize thw window and display its contents to the screen (Instructions) """
         self.setFixedSize(700, 600)
         self.setWindowTitle('Инструкция')
+        # Запрещает взаимодействовать с родительским окном
         self.setWindowModality(Qt.ApplicationModal)
 
         self.widget = QWidget(self)

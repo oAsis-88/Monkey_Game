@@ -7,11 +7,11 @@ class Settings():
         self.size_cell = 100  # 50 x 50
 
         # Размер поля
-        self.count_rows = 4
-        self.count_columns = 6
+        self.count_rows = 6
+        self.count_columns = 9
 
         # Время игры
-        self.time_game = 2
+        self.time_game = 100  # в секундах
 
         # Кол-во оставшихся плиток
         self.count_of_tiles = self.count_rows * self.count_columns
@@ -31,5 +31,5 @@ class Settings():
         # Максимальный и минимальный размер
         self.min_count_rows = 4
         self.min_count_columns = 6
-        self.max_count_rows = 6
+        self.max_count_rows = 9
         self.max_count_columns = 12

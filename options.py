@@ -3,7 +3,7 @@ import sys
 
 from PyQt5.QtWidgets import QWidget, QPushButton, QMessageBox, QAction, QMainWindow, QVBoxLayout, QHBoxLayout, \
     QApplication, QMenu, QGridLayout, QLabel, QLineEdit, QGraphicsDropShadowEffect, QTableWidget, QTableView, \
-    QTableWidgetItem
+    QTableWidgetItem, QAbstractItemView
 from PyQt5.QtCore import Qt, QLine, QPointF
 from PyQt5.QtGui import QPainter, QPen, QIcon, QPixmap, QPalette, QBrush, QColor
 from PyQt5.QtCore import Qt
@@ -89,6 +89,10 @@ class Options(QWidget):
         self.table.resize(100, 100)
         self.table.setRowCount(self.ai_settings.count_rows)
         self.table.setColumnCount(self.ai_settings.count_columns)
+        # Запрещает выделять ячейки
+        self.table.setSelectionMode(QAbstractItemView.NoSelection)
+        # Запрещает изменять содержимое ячейки
+        self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         for row in range(self.ai_settings.count_rows):
             self.table.setRowHeight(row, 20)
             for col in range(self.ai_settings.count_columns):
