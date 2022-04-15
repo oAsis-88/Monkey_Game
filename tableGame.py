@@ -68,7 +68,7 @@ class TableGame(QTableWidget):
             for col in range(self.ai_settings.count_columns):
                 self.setColumnWidth(col, self.ai_settings.size_cell)
 
-                icon = QIcon(f'monkey_Game/image/{self.data[row][col]}_monkey')
+                icon = QIcon(f'image/{self.data[row][col]}_monkey')
                 item_icon = QTableWidgetItem(icon, '')
                 self.setItem(row, col, item_icon)
 
