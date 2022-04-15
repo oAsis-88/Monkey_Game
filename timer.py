@@ -52,7 +52,7 @@ class Time(QWidget):
 
         self.bar = QProgressBar()
         self.bar.setObjectName("Timer")
-        self.bar.setFixedHeight(int(self.height() * 9 / 10))
+        self.bar.setFixedHeight(int(self.par.height() * 8 / 10))
         self.bar.setValue(int(self.ai_settings.time_game * 5 / 3))
         self.bar.setFormat("")
         self.bar.setOrientation(Qt.Vertical)

@@ -21,16 +21,16 @@ class Game(QMainWindow):
         # size : cell-50px * count-13 = 650
         # self.setFixedSize(732, 652)
         self.setWindowTitle("Game")
+        screen_game_height = self.ai_settings.count_rows * self.ai_settings.size_cell + 20
+        self.setFixedHeight(screen_game_height)
 
         self.widget = QWidget()
         self.box = QGridLayout()
         self.display()
         self.widget.setLayout(self.box)
 
-        screen_game_height = self.ai_settings.count_rows * self.ai_settings.size_cell + 20
         screen_game_wight = self.ai_settings.count_columns * self.ai_settings.size_cell + self.info_table.width() + self.time.width() * 2
         self.setFixedWidth(screen_game_wight)
-        self.setFixedHeight(screen_game_height)
 
         with open("style.css", 'r') as f:
             style = f.read()
